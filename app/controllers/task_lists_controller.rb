@@ -18,6 +18,12 @@ class TaskListsController < ApplicationController
     end
   end
 
+  def close
+    @task_list = current_user.task_lists.find(params[:id])
+    @task_list.close!
+    redirect_to task_lists_path
+  end
+
   private
 
   def task_list_params
