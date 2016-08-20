@@ -14,7 +14,7 @@
       <tbody>
         <% @task_lists.each do |task_list| %>
           <tr>
-            <td><%= task_list.name %></td>
+            <td><%= link_to task_list.name, task_list_path(task_list) %></td>
             <td><%= task_list.is_public %></td>
             <td><%= task_list.done %></td>
             <td><%= task_list.user.email %></td>
