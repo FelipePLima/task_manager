@@ -8,4 +8,6 @@ Rails.application.routes.draw do
       put :close
     end
   end
+
+  put "tasks/:id/close", to: "tasks#close", as: 'close_task'
 end

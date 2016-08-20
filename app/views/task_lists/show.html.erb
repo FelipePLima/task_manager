@@ -21,15 +21,19 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Nome</th>
+          <th width="60%">Descrição</th>
+          <th width="20%">Fechada?</th>
+          <th width="20%"></th>
         </tr>
       </thead>
       <tbody>
-          <% @task_list.tasks.each do |task| %>
-            <tr>
-              <td><%= task.description %></td>
-            </tr>
-          <% end %>
+        <% @task_list.tasks.each do |task| %>
+          <tr>
+            <td><%= task.description %></td>
+            <td><%= task.done %></td>
+            <td><%= finish_task_link(task) %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
