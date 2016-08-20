@@ -1,6 +1,6 @@
 class TaskList < ApplicationRecord
   belongs_to :user
-  has_many   :tasks, dependent: :destroy
+  has_many   :tasks, dependent: :destroy, inverse_of: :task_list
 
   validates :name, :user, presence: true
 
