@@ -1,0 +1,20 @@
+<%= form_for @task_list do |f| %>
+  <% if @task_list.errors.any? %>
+    <ul class="well background_red">
+      <% @task_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :name, "Nome" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="checkbox">
+    <label><%= f.check_box :is_public %> Público?</label>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Salvar', class: "btn btn-primary"%>
+    <%= link_to 'Minhas Listas', task_lists_path, class: "btn btn-default"%>
+  </div>
+<% end %>

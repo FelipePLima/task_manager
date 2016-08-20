@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :task_list, only: [:index]
+  resources :task_lists, only: [:index, :new, :create]
 end

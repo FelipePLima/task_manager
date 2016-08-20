@@ -4,4 +4,23 @@ class TaskListsController < ApplicationController
   def index
     @task_lists = current_user.task_lists
   end
+
+  def new
+    @task_list = TaskList.new
+  end
+
+  def create
+    @task_list = current_user.task_lists.new(task_list_params)
+    if @task_list.save
+      redirect_to task_lists_path, notice: 'Lista de Tarefas criado com sucesso!'
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def task_list_params
+    params.require(:task_list).permit(:name, :is_public)
+  end
 end
