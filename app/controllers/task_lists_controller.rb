@@ -38,6 +38,11 @@ class TaskListsController < ApplicationController
     redirect_to favorites_task_lists_path
   end
 
+  def unsubscribing
+    current_user.remove_favorite! params[:id]
+    redirect_to favorites_task_lists_path
+  end
+
   private
 
   def task_list_params

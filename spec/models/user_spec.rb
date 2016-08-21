@@ -20,4 +20,13 @@ RSpec.describe User, type: :model do
       expect{ user.add_favorite!(task_list.id) }.not_to change(user.favorites_task_lists, :count)
     end
   end
+
+  describe '#remove_favorite!' do
+    let!(:task_list) {create(:task_list)}
+    let!(:user) {create(:user, favorites_task_lists: [task_list])}
+
+    it do
+      expect{ user.remove_favorite!(task_list.id) }.to change(user.favorites_task_lists, :count).from(1).to(0)
+    end
+  end
 end

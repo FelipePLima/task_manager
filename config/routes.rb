@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       put  :close
       post :subscribing
+      post :unsubscribing
     end
     collection do
       get :favorites

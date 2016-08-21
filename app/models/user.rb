@@ -11,4 +11,9 @@ class User < ApplicationRecord
       self.favorites_task_lists << task_list
     end
   end
+
+  def remove_favorite! task_list_id
+    task_list = TaskList.find(task_list_id)
+    self.favorites_task_lists.delete(task_list)
+  end
 end
