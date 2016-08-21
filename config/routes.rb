@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :task_lists, expect: [:edit, :update, :destroy] do
     member do
-      put :close
+      put  :close
+      post :subscribing
+    end
+    collection do
+      get :favorites
     end
   end
 

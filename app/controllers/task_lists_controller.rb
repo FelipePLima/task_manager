@@ -28,6 +28,16 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find(params[:id])
   end
 
+  def favorites
+    @favorites_task_lists = current_user.favorites_task_lists
+    @public_task_lists = TaskList.public_lists - @favorites_task_lists
+  end
+
+  def subscribing
+    current_user.add_favorite! params[:id]
+    redirect_to favorites_task_lists_path
+  end
+
   private
 
   def task_list_params

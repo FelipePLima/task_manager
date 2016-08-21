@@ -1,0 +1,29 @@
+<div class="well col-md-12">
+  <h3>Listas de Tarefas Públicas</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th width="40%">Nome</th>
+        <th width="10%">Publica?</th>
+        <th width="10%">Fechada?</th>
+        <th width="30%">Usuário</th>
+        <th width="10%"><i class="yellow fa fa-star-o" aria-hidden="true"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @public_task_lists.each do |task_list| %>
+        <tr>
+          <td><%= task_list.name %></td>
+          <td><%= task_list.is_public %></td>
+          <td><%= task_list.done %></td>
+          <td><%= task_list.user.email %></td>
+          <td>
+            <%= link_to subscribing_task_list_path(task_list.id), method: :post do %>
+              <i class="yellow fa fa-star-o" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

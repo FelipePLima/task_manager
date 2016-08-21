@@ -8,4 +8,9 @@ RSpec.describe Task, type: :model do
   describe "associations" do
     it{is_expected.to belong_to(:task_list)}
   end
+
+  describe "#close!" do
+    let!(:task) {create :task, done: false}
+    it{expect(task.close!).to be_truthy}
+  end
 end
