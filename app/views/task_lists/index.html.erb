@@ -15,8 +15,8 @@
         <% @task_lists.each do |task_list| %>
           <tr>
             <td><%= link_to task_list.name, task_list_path(task_list) %></td>
-            <td><%= task_list.is_public %></td>
-            <td><%= task_list.done %></td>
+            <td><%= t("boolean_#{task_list.is_public?}") %></td>
+            <td><%= t("boolean_#{task_list.done?}") %></td>
             <td><%= task_list.user.email %></td>
             <td><%= finish_task_list_link(task_list)%></td>
           </tr>

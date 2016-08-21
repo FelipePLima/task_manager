@@ -14,8 +14,8 @@
       <% @favorites_task_lists.each do |task_list| %>
         <tr>
           <td><%= task_list.name %></td>
-          <td><%= task_list.is_public %></td>
-          <td><%= task_list.done %></td>
+          <td><%= t("boolean_#{task_list.is_public?}") %></td>
+          <td><%= t("boolean_#{task_list.done?}") %></td>
           <td><%= task_list.user.email %></td>
           <td>
             <%= link_to unsubscribing_task_list_path(task_list.id), method: :post do%>
