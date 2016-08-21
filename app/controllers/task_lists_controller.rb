@@ -46,7 +46,6 @@ class TaskListsController < ApplicationController
   private
 
   def task_list_params
-    params.require(:task_list).permit(:name, :is_public, tasks_attributes: [:id, :description,
-                                      :_destroy])
+    params.require(:task_list).permit(:name, :is_public, tasks_attributes: [:id, :description,:_destroy, task_children_attributes: [:id, :description, :_destroy]])
   end
 end

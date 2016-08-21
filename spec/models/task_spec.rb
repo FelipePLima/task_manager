@@ -8,7 +8,11 @@ RSpec.describe Task, type: :model do
   describe "associations" do
     it{is_expected.to belong_to(:task_list)}
     it{is_expected.to belong_to(:task_parent)}
-    it{is_expected.to have_many(:task_children)}
+    it{is_expected.to have_many(:task_children).dependent(:destroy)}
+  end
+
+  describe 'multiples task_children' do
+    it { is_expected.to accept_nested_attributes_for(:task_children) }
   end
 
   describe "#close!" do
