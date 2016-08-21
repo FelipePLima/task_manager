@@ -4,7 +4,6 @@
     <thead>
       <tr>
         <th width="40%">Nome</th>
-        <th width="10%">Publica?</th>
         <th width="10%">Fechada?</th>
         <th width="30%">Usuário</th>
         <th width="10%"></th>
@@ -13,8 +12,7 @@
     <tbody>
       <% @public_task_lists.each do |task_list| %>
         <tr>
-          <td><%= task_list.name %></td>
-          <td><%= t("boolean_#{task_list.is_public?}") %></td>
+          <td><%= link_to task_list.name, task_list_path(task_list) %></td>
           <td><%= t("boolean_#{task_list.done?}") %></td>
           <td><%= task_list.user.email %></td>
           <td>

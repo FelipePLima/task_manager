@@ -11,7 +11,7 @@
       <p><%= t("boolean_#{@task_list.done?}") %></p>
     </div>
     <div class="col-md-4">
-      <p><strong>Criador</strong></p>
+      <p><strong>Usuário</strong></p>
       <p><%= @task_list.user.email %></p>
     </div>
   </div>
@@ -41,6 +41,6 @@
 <hr />
 <div id="actions" class="row">
   <div class="col-md-12">
-    <%= link_to "Voltar", task_lists_path, class: "btn btn-default" %>
+    <%= link_to "Voltar", :back, class: "btn btn-default" %>
   </div>
 </div>

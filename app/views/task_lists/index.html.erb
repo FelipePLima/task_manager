@@ -7,7 +7,6 @@
           <th width="40%">Nome</th>
           <th width="10%">Publica?</th>
           <th width="10%">Fechada?</th>
-          <th width="40%">Usuário</th>
           <th width="10%"></th>
         </tr>
       </thead>
@@ -17,7 +16,6 @@
             <td><%= link_to task_list.name, task_list_path(task_list) %></td>
             <td><%= t("boolean_#{task_list.is_public?}") %></td>
             <td><%= t("boolean_#{task_list.done?}") %></td>
-            <td><%= task_list.user.email %></td>
             <td><%= finish_task_list_link(task_list)%></td>
           </tr>
         <% end %>
