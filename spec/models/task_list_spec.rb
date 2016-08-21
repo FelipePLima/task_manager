@@ -25,7 +25,17 @@ RSpec.describe TaskList, type: :model do
   end
 
   describe '#close!' do
-    let!(:task_list) {create :task_list, done: false}
-    it{expect(task_list.close!).to be_truthy}
+    let!(:task_list_open) {create :task_list, done: false}
+    let!(:task_list_close) {create :task_list, done: true}
+    it { expect{ task_list_open.close! }.to change(task_list_open, :done).from(false).to(true) }
+    it { expect{ task_list_close.close! }.to_not change(task_list_close, :done) }
   end
+
+  describe '#open' do
+    let!(:task_list_open) {create :task_list, done: false}
+    let!(:task_list_close) {create :task_list, done: true}
+    it { expect(task_list_open.open?).to be_truthy }
+    it { expect(task_list_close.open?).to be_falsey }
+  end
+
 end

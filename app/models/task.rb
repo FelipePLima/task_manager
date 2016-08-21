@@ -11,4 +11,13 @@ class Task < ApplicationRecord
   def close!
     self.update_attribute(:done, true)
   end
+
+  def open?
+   !done
+  end
+
+  def owner
+    task_list.user
+  end
+
 end

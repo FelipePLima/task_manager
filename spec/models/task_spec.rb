@@ -16,7 +16,18 @@ RSpec.describe Task, type: :model do
   end
 
   describe "#close!" do
-    let!(:task) {create :task, done: false}
-    it{expect(task.close!).to be_truthy}
+    let!(:task_open) {create :task, done: false}
+    let!(:task_close) {create :task, done: true}
+    it{ expect{ task_open.close! }.to change(task_open, :done).from(false).to(true) }
+    it{ expect{ task_close.close! }.to_not change(task_open, :done) }
   end
+
+  describe '#owner' do
+    let!(:user) {create :user}
+    let!(:task_list) {create :task_list, user: user}
+    let!(:task) {create :task, task_list: task_list}
+
+    it { expect(task.owner).to eq user }
+  end
+
 end

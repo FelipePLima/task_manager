@@ -12,4 +12,8 @@ class TaskList < ApplicationRecord
   def close!
     self.update_attribute(:done, true)
   end
+
+  def open?
+    !done
+  end
 end
