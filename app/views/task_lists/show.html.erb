@@ -17,7 +17,7 @@
   </div>
   <hr />
   <div class="row">
-    <% @task_list.tasks.where(parent_id: nil).each do |task| %>
+    <% @task_list.tasks.where(parent_id: nil).order(:created_at).each do |task| %>
       <div class="well row">
         <div class="col-md-4">
           <h4>Tarefa - <%= task.description %></h4>
@@ -35,6 +35,11 @@
 </div>
 <div id="actions" class="row">
   <div class="col-md-12">
-    <%= link_to "Voltar", :back, class: "btn btn-default" %>
+    <%= link_to("Editar", edit_task_list_path(@task_list), class: "btn btn-primary") if( @task_list.user == current_user) %>
+    <% if @task_list.user == current_user %>
+      <%= link_to "Voltar", task_lists_path, class: "btn btn-default" %>
+    <% else %>
+      <%= link_to "Voltar", favorites_task_lists_path, class: "btn btn-default" %>
+    <% end %>
   </div>
 </div>

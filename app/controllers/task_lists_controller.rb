@@ -19,6 +19,19 @@ class TaskListsController < ApplicationController
     end
   end
 
+  def edit
+    @task_list = current_user.task_lists.find(params[:id])
+  end
+
+  def update
+    @task_list = current_user.task_lists.find(params[:id])
+    if @task_list.update(task_list_params)
+      redirect_to task_lists_path, notice: 'Lista de Tarefas atualizada com sucesso!'
+    else
+      render :edit
+    end
+  end
+
   def close
     @task_list = current_user.task_lists.find(params[:id])
     @task_list.check_and_close_tasks!

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :task_lists, expect: [:edit, :update, :destroy] do
+  resources :task_lists, expect: [:destroy] do
     member do
       put  :close
       post :subscribing

@@ -15,7 +15,7 @@ RSpec.describe TaskListsHelper, type: :helper do
       context "when user is the task_list owner" do
         let!(:task_list) {create :task_list, done: false, user: current_user}
         it "should be blank" do
-          expect(finish_task_list_link(task_list)).to eq("<a rel=\"nofollow\" data-method=\"put\" href=\"/task_lists/#{task_list.id}/close\">Fechar</a>"
+          expect(finish_task_list_link(task_list)).to eq("<a class=\"red\" rel=\"nofollow\" data-method=\"put\" href=\"/task_lists/2/close\"><i class=\"fa fa-times\"></i></a>"
   )
         end
       end
@@ -42,7 +42,7 @@ RSpec.describe TaskListsHelper, type: :helper do
         let!(:task_list) {create :task_list, done: false, user: current_user}
         let!(:task) {create :task, done: false, task_list: task_list}
         it "should be blank" do
-          expect(finish_task_link(task)).to eq("<a rel=\"nofollow\" data-method=\"put\" href=\"/tasks/#{task.id}/close\">Fechar</a>"
+          expect(finish_task_link(task)).to eq("<a class=\"red\" rel=\"nofollow\" data-method=\"put\" href=\"/tasks/2/close\"><i class=\"fa fa-times\"></i></a>"
   )
         end
       end
