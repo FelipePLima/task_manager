@@ -16,6 +16,12 @@ group :development, :test do
   gem 'shoulda-matchers', '3.1.1'
   gem 'rspec-rails', '3.5.1'
   gem 'factory_girl_rails', '4.7.0'
+  gem 'capybara', '2.8.0'
+  gem 'selenium-webdriver', '2.53.4'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :development do
