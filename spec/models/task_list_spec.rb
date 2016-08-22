@@ -38,4 +38,11 @@ RSpec.describe TaskList, type: :model do
     it { expect(task_list_close.open?).to be_falsey }
   end
 
+  describe '#check_and_close_tasks!' do
+    let!(:task_list) {create :task_list, done: false}
+    let!(:task) {create :task, task_list_id: task_list.id, done: false}
+
+    it {expect{task_list.check_and_close_tasks!}.to change(task_list, :done).from(false).to(true) }
+    it {expect{task.check_and_close_tasks!}.to change(task, :done).from(false).to(true) }
+  end
 end

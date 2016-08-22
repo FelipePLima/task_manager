@@ -4,6 +4,7 @@ module TaskListsHelper
   end
 
   def finish_task_link(task)
-    link_to "Fechar", close_task_path(task), method: :put if task.open? && task.owner == current_user
+    owner = task.task_parent.present? ? task.task_parent.owner : task.owner
+    link_to "Fechar", close_task_path(task), method: :put if task.open? && owner == current_user
   end
 end

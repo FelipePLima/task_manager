@@ -1,0 +1,20 @@
+<div class="well-dark row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="34%">SubTarefas</th>
+        <th width="33%"></th>
+        <th width="33%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% task.task_children.each do |task_child| %>
+        <tr>
+          <td><%= task_child.description %></td>
+          <td><%= t("boolean_#{task_child.done?}") %></td>
+          <td><%= finish_task_link(task_child) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

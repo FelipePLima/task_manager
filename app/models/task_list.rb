@@ -9,8 +9,13 @@ class TaskList < ApplicationRecord
 
   scope :public_lists, -> {where(is_public: true)}
 
+  def check_and_close_tasks!
+    close!
+    tasks.update_all(done: true)
+  end
+
   def close!
-    self.update_attribute(:done, true)
+    update_attribute(:done, true) if open?
   end
 
   def open?

@@ -16,29 +16,23 @@
     </div>
   </div>
   <hr />
-  <div class="well row">
-    <h4>Tarefas</h4>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th width="60%">Descrição</th>
-          <th width="20%">Fechada?</th>
-          <th width="20%"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @task_list.tasks.each do |task| %>
-          <tr>
-            <td><%= task.description %></td>
-            <td><%= t("boolean_#{task.done?}") %></td>
-            <td><%= finish_task_link(task) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="row">
+    <% @task_list.tasks.where(parent_id: nil).each do |task| %>
+      <div class="well row">
+        <div class="col-md-4">
+          <h4>Tarefa - <%= task.description %></h4>
+        </div>
+        <div class="col-md-4">
+          <p><b>Fechado?</b> - <%= t("boolean_#{task.done?}") %></p>
+        </div>
+        <div class="col-md-4">
+          <p><%= finish_task_link(task) %></p>
+        </div>
+        <%= render partial: 'task_children', locals: {task: task}%>
+      </div>
+    <% end %>
   </div>
 </div>
-<hr />
 <div id="actions" class="row">
   <div class="col-md-12">
     <%= link_to "Voltar", :back, class: "btn btn-default" %>

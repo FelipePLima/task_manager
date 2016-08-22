@@ -30,4 +30,11 @@ RSpec.describe Task, type: :model do
     it { expect(task.owner).to eq user }
   end
 
+  describe '#open?' do
+    let!(:task) {create :task, done: false}
+
+    it{expect(task.open?).to eq(true)}
+    it{expect(task.open?).not_to eq(false)}
+  end
+
 end

@@ -8,8 +8,23 @@ class Task < ApplicationRecord
 
   validates :description, presence: true
 
+  def check_and_close_tasks!
+    close!
+    task_children.update_all(done: true)
+
+    if task_parent.present?
+      if task_parent.task_children.where(done: false).empty?
+        task_parent.close!
+      end
+    else
+      if task_list.tasks.where(done: false, parent_id: nil).empty?
+        task_list.close!
+      end
+    end
+  end
+
   def close!
-    self.update_attribute(:done, true)
+    update_attribute(:done, true) if open?
   end
 
   def open?

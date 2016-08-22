@@ -12,6 +12,7 @@ class TaskListsController < ApplicationController
   def create
     @task_list = current_user.task_lists.new(task_list_params)
     if @task_list.save
+      @task_list.tasks.map{|task| task.task_children.update_all(task_list_id: @task_list.id)}
       redirect_to task_lists_path, notice: 'Lista de Tarefas criado com sucesso!'
     else
       render :new
@@ -20,7 +21,7 @@ class TaskListsController < ApplicationController
 
   def close
     @task_list = current_user.task_lists.find(params[:id])
-    @task_list.close!
+    @task_list.check_and_close_tasks!
     redirect_to task_lists_path
   end
 
@@ -46,6 +47,6 @@ class TaskListsController < ApplicationController
   private
 
   def task_list_params
-    params.require(:task_list).permit(:name, :is_public, tasks_attributes: [:id, :description,:_destroy, task_children_attributes: [:id, :description, :_destroy]])
+    params.require(:task_list).permit(:name, :is_public, tasks_attributes: [:id, :description,:_destroy, task_children_attributes: [:id, :description, :task_list_id, :_destroy]])
   end
 end
